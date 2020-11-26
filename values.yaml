@@ -71,4 +71,4 @@ mongodb:
   useStatefulSet: true
   initContainers: []
   auth:
-    existingSecret: jim
+    existingSecret: ""
