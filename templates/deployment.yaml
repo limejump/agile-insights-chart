@@ -1,31 +1,31 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ include "..fullname" . }}
+  name: agile-dashboard
   labels:
-    {{- include "..labels" . | nindent 4 }}
+    name: agile-dashboard
 spec:
-  replicas: {{ .Values.replicaCount }}
+  replicas: {{ .Values.dashboard.replicaCount }}
   selector:
     matchLabels:
-      {{- include "..selectorLabels" . | nindent 6 }}
+      app: agile-dashboard
   template:
     metadata:
       labels:
-        {{- include "..selectorLabels" . | nindent 8 }}
+        app: agile-dashboard
     spec:
-    {{- with .Values.imagePullSecrets }}
+    {{- with .Values.dashboard.imagePullSecrets }}
       imagePullSecrets:
         {{- toYaml . | nindent 8 }}
     {{- end }}
       securityContext:
-        {{- toYaml .Values.podSecurityContext | nindent 8 }}
+        {{- toYaml .Values.dashboard.podSecurityContext | nindent 8 }}
       containers:
         - name: {{ .Chart.Name }}
           securityContext:
-            {{- toYaml .Values.securityContext | nindent 12 }}
-          image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
-          imagePullPolicy: {{ .Values.image.pullPolicy }}
+            {{- toYaml .Values.dashboard.securityContext | nindent 12 }}
+          image: "{{ .Values.dashboard.image.repository }}:{{ .Values.dashboard.image.tag }}"
+          imagePullPolicy: {{ .Values.dashboard.image.pullPolicy }}
           ports:
             - name: http
               containerPort: 8000
@@ -39,7 +39,7 @@ spec:
               path: /
               port: http
           resources:
-            {{- toYaml .Values.resources | nindent 12 }}
+            {{- toYaml .Values.dashboard.resources | nindent 12 }}
           volumeMounts:
             - name: config-volume
               mountPath: /opt/code/config_files
@@ -51,29 +51,29 @@ spec:
                 secretKeyRef:
                   name: {{ required "Must supply an existing mongodb secret" .Values.mongodb.auth.existingSecret }}
                   key: mongodb-root-password
-            - name: JIRA_EMAIL
-              valueFrom:
-                secretKeyRef:
-                  name: {{ required "Must supply an existing jira secret" .Values.jira.credentials.existingSecret }}
-                  key: jira-email
-            - name: JIRA_TOKEN
-              valueFrom:
-                secretKeyRef:
-                  name: {{ required "Must supply an existing jira secret" .Values.jira.credentials.existingSecret }}
-                  key: jira-token
+            # - name: JIRA_EMAIL
+            #   valueFrom:
+            #     secretKeyRef:
+            #       name: {{ required "Must supply an existing jira secret" .Values.jira.credentials.existingSecret }}
+            #       key: jira-email
+            # - name: JIRA_TOKEN
+            #   valueFrom:
+            #     secretKeyRef:
+            #       name: {{ required "Must supply an existing jira secret" .Values.jira.credentials.existingSecret }}
+            #       key: jira-token
       volumes:
         - name: config-volume
           configMap:
             name: jira-config
-      {{- with .Values.nodeSelector }}
+      {{- with .Values.dashboard.nodeSelector }}
       nodeSelector:
         {{- toYaml . | nindent 8 }}
       {{- end }}
-    {{- with .Values.affinity }}
+    {{- with .Values.dashboard.affinity }}
       affinity:
         {{- toYaml . | nindent 8 }}
     {{- end }}
-    {{- with .Values.tolerations }}
+    {{- with .Values.dashboard.tolerations }}
       tolerations:
         {{- toYaml . | nindent 8 }}
     {{- end }}

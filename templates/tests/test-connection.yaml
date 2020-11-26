@@ -1,9 +1,7 @@
 apiVersion: v1
 kind: Pod
 metadata:
-  name: "{{ include "..fullname" . }}-test-connection"
-  labels:
-{{ include "..labels" . | nindent 4 }}
+  name: agile-dashboard-test-connection
   annotations:
     "helm.sh/hook": test-success
 spec:
@@ -11,5 +9,5 @@ spec:
     - name: wget
       image: busybox
       command: ['wget']
-      args:  ['{{ include "..fullname" . }}:{{ .Values.service.port }}']
+      args:  ['agile-dashboard:{{ .Values.dashboard.service.port }}']
   restartPolicy: Never
