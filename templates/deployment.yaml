@@ -40,6 +40,9 @@ spec:
               port: http
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
+          volumeMounts:
+            - name: config-volume
+              mountPath: /opt/code/config_files
           env:
             - name: DB_HOST
               value: mongo-mongodb
@@ -58,6 +61,10 @@ spec:
                 secretKeyRef:
                   name: {{ required "Must supply an existing jira secret" .Values.jira.credentials.existingSecret }}
                   key: jira-token
+      volumes:
+        - name: config-volume
+          configMap:
+            name: jira-config
       {{- with .Values.nodeSelector }}
       nodeSelector:
         {{- toYaml . | nindent 8 }}
