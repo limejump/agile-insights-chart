@@ -20,8 +20,7 @@ jira:
         board_id: 145
     base_url: https://limejump.atlassian.net/rest/agile
   credentials:
-    email: null
-    secretName: null
+    existingSecret: ""
 
 podSecurityContext: {}
   # fsGroup: 2000

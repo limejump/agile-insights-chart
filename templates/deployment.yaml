@@ -48,6 +48,16 @@ spec:
                 secretKeyRef:
                   name: {{ required "Must supply an existing mongodb secret" .Values.mongodb.auth.existingSecret }}
                   key: mongodb-root-password
+            - name: JIRA_EMAIL
+              valueFrom:
+                secretKeyRef:
+                  name: {{ required "Must supply an existing jira secret" .Values.jira.credentials.existingSecret }}
+                  key: jira-email
+            - name: JIRA_TOKEN
+              valueFrom:
+                secretKeyRef:
+                  name: {{ required "Must supply an existing jira secret" .Values.jira.credentials.existingSecret }}
+                  key: jira-token
       {{- with .Values.nodeSelector }}
       nodeSelector:
         {{- toYaml . | nindent 8 }}
