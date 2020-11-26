@@ -14,11 +14,7 @@ nameOverride: ""
 fullnameOverride: ""
 
 jira:
-  config:
-    teams:
-      - name: dar
-        board_id: 145
-    base_url: https://limejump.atlassian.net/rest/agile
+  config: {}
   credentials:
     existingSecret: ""
 
