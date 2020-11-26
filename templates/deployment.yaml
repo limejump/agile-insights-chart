@@ -47,7 +47,7 @@ spec:
               mountPath: /opt/code/config_files
           env:
             - name: DB_HOST
-              value: mongo-mongodb
+              value: {{ include "..fullname" . }}-mongodb
             - name: DB_PASSWORD
               valueFrom:
                 secretKeyRef:
