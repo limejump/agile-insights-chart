@@ -32,6 +32,13 @@ jira:
   credentials:
     existingSecret: ""
 
+dataCollection:
+  enabled: false
+  image:
+    repository: nginx
+    pullPolicy: IfNotPresent
+    tag: latest
+
 mongodb:
   architecture: standalone
   useStatefulSet: true
