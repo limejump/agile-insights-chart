@@ -5,9 +5,9 @@
 dashboard:
   replicaCount: 1
   image:
-    repository: nginx
+    repository: sprints-dashboard
     pullPolicy: IfNotPresent
-    tag: latest
+    tag: local
   imagePullSecrets: []
   podSecurityContext: {}
   securityContext: {}
@@ -35,9 +35,9 @@ jira:
 dataCollection:
   enabled: false
   image:
-    repository: nginx
+    repository: sprints-dashboard
     pullPolicy: IfNotPresent
-    tag: latest
+    tag: local
 
 mongodb:
   architecture: standalone
