@@ -1,0 +1,5 @@
+image: dtzar/helm-kubectl:3.1.1
+
+lint:
+  script:
+    - helm lint
