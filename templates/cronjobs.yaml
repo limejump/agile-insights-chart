@@ -14,7 +14,10 @@ spec:
             image: "{{ .Values.dataCollection.image.repository }}:{{ .Values.dataCollection.image.tag }}"
             imagePullPolicy: {{ .Values.dashboard.image.pullPolicy }}
             command: ["python"]
-            args: ["cli.py", "extract", "sprints", "latest"]
+            args: [
+              "cli.py", "extract", "sprints", "latest",
+              "--config", "./config_files/config.json"
+            ]
             volumeMounts:
               - name: config-volume
                 mountPath: /opt/code/config_files
@@ -58,7 +61,10 @@ spec:
             image: "{{ .Values.dataCollection.image.repository }}:{{ .Values.dataCollection.image.tag }}"
             imagePullPolicy: {{ .Values.dashboard.image.pullPolicy }}
             command: ["python"]
-            args: ["cli.py", "extract", "issues"]
+            args: [
+              "cli.py", "extract", "issues",
+              "--config", "./config_files/config.json"
+            ]
             volumeMounts:
               - name: config-volume
                 mountPath: /opt/code/config_files
