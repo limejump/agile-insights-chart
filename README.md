@@ -23,7 +23,7 @@ Two ETLs which are deployed as `Cronjobs`. They fetch and transform data from an
 
 ### Jira Config
 
-The `config` subsection is deployed as a `ConfigMap` which is mounted as a json file into both the **dataCollection** `Cronjobs` and the **dashboard** `Pods`. It should follow the same format as provided in [this example](https://gitlab.com/agile-insights/capture-and-display/-/blob/master/config_files/example-config.json).
+The `config` subsection is deployed as a `ConfigMap` which is mounted as a json file into both the **dataCollection** `Cronjobs` and the **dashboard** `Pods`. It should follow the same format as provided in [this example](https://github.com/limejump/agile-insights/blob/main/config_files/example-config.json).
 
 ### Secrets
 
