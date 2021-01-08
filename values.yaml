@@ -45,3 +45,4 @@ mongodb:
   initContainers: []
   auth:
     existingSecret: ""
+  resources: {}
