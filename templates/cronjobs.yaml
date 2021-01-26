@@ -3,6 +3,8 @@ apiVersion: batch/v1beta1
 kind: CronJob
 metadata:
   name: sprints-extract
+  annotation:
+    sidecar.istio.io/inject: "false"
 spec:
   schedule: "00 16 * * FRI"
   jobTemplate:
@@ -49,6 +51,8 @@ apiVersion: batch/v1beta1
 kind: CronJob
 metadata:
   name: historic-issues-extract
+  annotation:
+    sidecar.istio.io/inject: "false"
 spec:
   schedule: "15 16 * * FRI"
   jobTemplate:
