@@ -9,6 +9,7 @@ apiVersion: extensions/v1beta1
 kind: Ingress
 metadata:
   name: agile-dashboard
+  annotations: {{ .Values.dashboard.ingress.annotations }}
 spec:
 {{- if .Values.dashboard.ingress.tls }}
   tls:

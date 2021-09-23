@@ -13,10 +13,12 @@ dashboard:
   securityContext: {}
   service:
     type: ClusterIP
+    annotations: []
     port: 80
     targetPort: 8000
   ingress:
     enabled: false
+    annotations: []
     hosts:
       - host: localhost
         paths:

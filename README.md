@@ -34,31 +34,33 @@ This chart requires that `existingSecrets` are created separately to this chart 
 In the case of **mongodb** this helps prevent you from a situation that arises when you allow mongodb to auto-generate it's secret. In this scenario, if you ever need to re-release the mongodb chart, whilst keeping the existing `PersistentVolumeClaim` (underlying data), The mongodb `Deployment` will use a newly generated secrets, but the data volume will continue using the previously generated secrets. You essentially get locked out of your own data if you're not careful.
 
 
-| Value name                      | Description                                                            | Default                    |
-| ------------------------------- | ---------------------------------------------------------------------- | -------------------------- |
-| dashboard.replicaCount          | Number of dashboard pods                                               | `1`                        |
-| dashboard.image.repository      | Dashboard image repository                                             | `sprints-dashboard`        |
-| dashboard.image.pullPolicy      | Dashboard image pullPolicy                                             | `IfNotPresent`             |
-| dashboard.image.tag             | Dashboard image tag                                                    | `local`                    |
-| dashboard.imagePullSecrets      | Dashboard image pull secrets                                           | `[]`                       |
-| dashboard.podSecurityContext    | Dashboard pod security context                                         | `{}`                       |
-| dashboard.SecurityContext       | Dashboard container security context                                   | `{}`                       |
-| dashboard.service.type          | Dashboard service type                                                 | `ClusterIP`                |
-| dashboard.service.port          | Port that the dashboard service is reachable on                        | `80`                       |
-| dashboard.service.targetPort    | Port that the dashboard container exposes                              | `8000`                     |
-| dashboard.ingress.enabled       | Whether to enable an ingress resource or not                           | `false`                    |
-| dashboard.ingress.hosts         | if enabled, the default hosts                                          | path `/` on `localhost`    |
-| dashboard.ingress.tls           | if enabled, the default tls config                                     | `[]`                       |
-| dashboard.resources             | Dashboard resource requests and limits                                 | `{}`                       |
-| dashboard.nodeSelector          | Dashboard node selector                                                | `{}`                       |
-| dashboard.tolerations           | Dashboard taint tolerations                                            | `[]`                       |
-| dashboard.affinity              | Dashboard pod affinity                                                 | `{}`                       |
-| jira.config                     | Jira config file as described [here](#jira-config)                     | `{}`                       |
-| jira.credentials.existingSecret | An existing jira secret containing credentials ***required**           | `{}`                       |
-| dataCollection.enabled          | Whether to deploy the data collection `Cronjobs` or not                | `false`                    |
-| dataCollection.image.repository | Dashboard image repository                                             | `sprints-dashboard`        |
-| dataCollection.image.pullPolicy | Dashboard image pullPolicy                                             | `IfNotPresent`             |
-| dataCollection.image.tag        | Dashboard image tag                                                    | `local`                    |
+| Value name                      | Description                                                  | Default                 |
+| ------------------------------- | ------------------------------------------------------------ | ----------------------- |
+| dashboard.replicaCount          | Number of dashboard pods                                     | `1`                     |
+| dashboard.image.repository      | Dashboard image repository                                   | `sprints-dashboard`     |
+| dashboard.image.pullPolicy      | Dashboard image pullPolicy                                   | `IfNotPresent`          |
+| dashboard.image.tag             | Dashboard image tag                                          | `local`                 |
+| dashboard.imagePullSecrets      | Dashboard image pull secrets                                 | `[]`                    |
+| dashboard.podSecurityContext    | Dashboard pod security context                               | `{}`                    |
+| dashboard.SecurityContext       | Dashboard container security context                         | `{}`                    |
+| dashboard.service.type          | Dashboard service type                                       | `ClusterIP`             |
+| dashboard.service.annotations   | Dashboard service annotations                                | `[]`                    |
+| dashboard.service.port          | Port that the dashboard service is reachable on              | `80`                    |
+| dashboard.service.targetPort    | Port that the dashboard container exposes                    | `8000`                  |
+| dashboard.ingress.enabled       | Whether to enable an ingress resource or not                 | `false`                 |
+| dashboard.ingress.hosts         | if enabled, the default hosts                                | path `/` on `localhost` |
+| dashboard.ingress.annotations   | Dashboard ingress annotations                                | `[]`                    |
+| dashboard.ingress.tls           | if enabled, the default tls config                           | `[]`                    |
+| dashboard.resources             | Dashboard resource requests and limits                       | `{}`                    |
+| dashboard.nodeSelector          | Dashboard node selector                                      | `{}`                    |
+| dashboard.tolerations           | Dashboard taint tolerations                                  | `[]`                    |
+| dashboard.affinity              | Dashboard pod affinity                                       | `{}`                    |
+| jira.config                     | Jira config file as described [here](#jira-config)           | `{}`                    |
+| jira.credentials.existingSecret | An existing jira secret containing credentials ***required** | `{}`                    |
+| dataCollection.enabled          | Whether to deploy the data collection `Cronjobs` or not      | `false`                 |
+| dataCollection.image.repository | Dashboard image repository                                   | `sprints-dashboard`     |
+| dataCollection.image.pullPolicy | Dashboard image pullPolicy                                   | `IfNotPresent`          |
+| dataCollection.image.tag        | Dashboard image tag                                          | `local`                 |
 
 ## MongoDB Values
 
