@@ -13,11 +13,7 @@ dashboard:
   securityContext: {}
   service:
     type: ClusterIP
-    annotations:
-      service.beta.kubernetes.io/aws-load-balancer-type: external
-      service.beta.kubernetes.io/aws-load-balancer-nlb-target-type: ip
-      service.beta.kubernetes.io/aws-load-balancer-scheme: internet-facing
-      external-dns.alpha.kubernetes.io/hostname: agile-insights-proxy-oauth2-proxy
+    annotations: []
     port: 80
     targetPort: 8000
   ingress:
