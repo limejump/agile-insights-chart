@@ -18,6 +18,7 @@ dashboard:
     targetPort: 8000
   ingress:
     enabled: false
+    annotations: []
     hosts:
       - host: localhost
         paths:
