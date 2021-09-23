@@ -44,11 +44,12 @@ In the case of **mongodb** this helps prevent you from a situation that arises w
 | dashboard.podSecurityContext    | Dashboard pod security context                               | `{}`                    |
 | dashboard.SecurityContext       | Dashboard container security context                         | `{}`                    |
 | dashboard.service.type          | Dashboard service type                                       | `ClusterIP`             |
-| dashboard.service.annotations   | Dashboard service annotations                                |                         |
+| dashboard.service.annotations   | Dashboard service annotations                                | `[]`                    |
 | dashboard.service.port          | Port that the dashboard service is reachable on              | `80`                    |
 | dashboard.service.targetPort    | Port that the dashboard container exposes                    | `8000`                  |
 | dashboard.ingress.enabled       | Whether to enable an ingress resource or not                 | `false`                 |
 | dashboard.ingress.hosts         | if enabled, the default hosts                                | path `/` on `localhost` |
+| dashboard.ingress.annotations   | Dashboard ingress annotations                                | `[]`                    |
 | dashboard.ingress.tls           | if enabled, the default tls config                           | `[]`                    |
 | dashboard.resources             | Dashboard resource requests and limits                       | `{}`                    |
 | dashboard.nodeSelector          | Dashboard node selector                                      | `{}`                    |
